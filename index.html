@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ibrahim Ansari — CS Student, ML Researcher, Builder</title>
+  <meta name="description" content="Ibrahim Ansari — CS student at UW Allen School, ML researcher, and full-stack developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Custom Properties ─────────────────────────────────── */
+    :root {
+      --color-foreground:  #111111;
+      --color-background:  #FFFFFF;
+      --color-primary:     #5857FF;
+      --color-secondary:   #6B6A6A;
+      --color-tertiary:    #E2E2E2;
+      --color-quaternary:  #F3F2F2;
+      --sidebar-width:     23%;
+      --content-width:     77%;
+      --outer-pad:         clamp(32px, 6.666vw, 64px);
+    }
+
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Albert Sans', sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: var(--color-foreground);
+      background: var(--color-background);
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Layout Shell ──────────────────────────────────────── */
+    .site-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--outer-pad);
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    /* ── Sidebar ───────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      position: sticky;
+      top: 32px;
+      height: calc(100vh - 32px);
+      display: flex;
+      flex-direction: column;
+      padding: 48px 40px 48px 0;
+      gap: 40px;
+    }
+
+    .sidebar__name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-foreground);
+      transition: color 0.2s;
+    }
+    .sidebar__name:hover { color: var(--color-primary); }
+
+    .sidebar__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sidebar__nav a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-foreground);
+      transition: color 0.2s;
+      padding: 4px 0;
+    }
+    .sidebar__nav a:hover { color: var(--color-primary); }
+    .sidebar__nav a.active {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    .sidebar__social {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-top: auto;
+    }
+    .sidebar__social a {
+      color: var(--color-foreground);
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .sidebar__social a:hover { color: var(--color-primary); }
+    .sidebar__social svg { width: 22px; height: 22px; fill: currentColor; }
+
+    /* ── Main Content ──────────────────────────────────────── */
+    .main-content {
+      width: var(--content-width);
+      min-width: 0;
+    }
+
+    /* ── Angled Separator ──────────────────────────────────── */
+    .angled-sep {
+      display: block;
+      width: 100%;
+      height: 10px;
+      border: none;
+      color: var(--color-tertiary);
+      background-color: transparent !important;
+      background-image: linear-gradient(
+        -45deg,
+        currentColor 25%, transparent 25%,
+        transparent 50%, currentColor 50%,
+        currentColor 75%, transparent 75%, transparent
+      );
+      background-size: 5px 5px;
+    }
+
+    /* ── Section Wrapper ───────────────────────────────────── */
+    .section {
+      padding: min(64px, 6.4vw) 0;
+    }
+
+    /* ── Section Headings ──────────────────────────────────── */
+    h2.section-heading {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-foreground);
+      margin-bottom: 40px;
+    }
+
+    /* ── Buttons ───────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 0.6em 1.4em;
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Albert Sans', sans-serif;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+      letter-spacing: -0.01em;
+    }
+    .btn:hover { opacity: 0.8; }
+
+    .btn-primary {
+      background: var(--color-foreground);
+      color: #fff;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    #intro {
+      background: var(--color-quaternary);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-inner {
+      padding: min(64px, 8vw) 0;
+      max-width: 820px;
+    }
+    .hero-greeting {
+      font-size: 32px;
+      color: var(--color-secondary);
+      font-weight: 400;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero-headline {
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--color-foreground);
+      margin-bottom: 40px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+    }
+
+    /* ── About Blurb ───────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 5vh 0;
+    }
+    .about-grid p {
+      color: var(--color-foreground);
+      line-height: 1.6;
+    }
+
+    /* ── Projects Grid ─────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .feature-card__placeholder {
+      height: 200px;
+      background: var(--color-quaternary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--color-tertiary);
+    }
+    .feature-card__placeholder-label {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-secondary);
+      letter-spacing: -0.01em;
+    }
+    .feature-card__body {
+      background: var(--color-quaternary);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .feature-card__body h6 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+    }
+    .feature-card__body p {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--color-foreground);
+      flex: 1;
+    }
+
+    /* ── Experience Timeline ───────────────────────────────── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--color-tertiary);
+    }
+    .timeline-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .timeline-item__role {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-foreground);
+      letter-spacing: -0.01em;
+    }
+    .timeline-item__meta {
+      font-size: 16px;
+      color: var(--color-secondary);
+      font-weight: 400;
+    }
+    .timeline-item__desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-foreground);
+      margin-top: 4px;
+    }
+
+    /* ── Research Card ─────────────────────────────────────── */
+    .research-card {
+      background: var(--color-quaternary);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .research-card h3 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-foreground);
+    }
+    .research-card h6 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+    }
+    .research-card p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--color-foreground);
+    }
+    .research-card__actions {
+      display: flex;
+      gap: 1em;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    /* ── Awards Grid ───────────────────────────────────────── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .award-card {
+      background: var(--color-quaternary);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .award-card__name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-foreground);
+    }
+    .award-card__org {
+      font-size: 14px;
+      color: var(--color-secondary);
+      font-weight: 400;
+    }
+    .award-card__desc {
+      font-size: 15px;
+      color: var(--color-foreground);
+      line-height: 1.5;
+    }
+
+    /* ── Contact ───────────────────────────────────────────── */
+    .contact-inner {
+      max-width: 600px;
+    }
+    .contact-inner p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--color-foreground);
+      margin-bottom: 12px;
+    }
+    .contact-inner .contact-email {
+      font-size: 16px;
+      color: var(--color-secondary);
+      margin-bottom: 32px;
+      display: block;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      font-family: 'Albert Sans', sans-serif;
+      font-size: 16px;
+      padding: 12px 16px;
+      border: 1px solid var(--color-tertiary);
+      background: var(--color-background);
+      color: var(--color-foreground);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      letter-spacing: -0.01em;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--color-primary);
+    }
+    .contact-form textarea { resize: vertical; min-height: 140px; }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--color-tertiary);
+      padding: 24px var(--outer-pad);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .site-footer p {
+      font-size: 14px;
+      color: var(--color-secondary);
+    }
+
+    /* ── Mobile Header ─────────────────────────────────────── */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--color-background);
+      border-bottom: 1px solid var(--color-tertiary);
+      padding: 16px var(--outer-pad);
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mobile-header__name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-foreground);
+    }
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      color: var(--color-foreground);
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-foreground);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    /* ── Mobile Overlay Nav ────────────────────────────────── */
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--color-background);
+      flex-direction: column;
+      padding: 80px var(--outer-pad) 48px;
+      gap: 32px;
+    }
+    .mobile-nav-overlay.open { display: flex; }
+
+    .mobile-nav-overlay__close {
+      position: absolute;
+      top: 20px;
+      right: var(--outer-pad);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      color: var(--color-foreground);
+      line-height: 1;
+      padding: 4px 8px;
+    }
+    .mobile-nav-overlay nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .mobile-nav-overlay nav a {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-foreground);
+      transition: color 0.2s;
+    }
+    .mobile-nav-overlay nav a:hover { color: var(--color-primary); }
+
+    .mobile-nav-overlay__social {
+      display: flex;
+      gap: 24px;
+      margin-top: auto;
+    }
+    .mobile-nav-overlay__social a {
+      color: var(--color-foreground);
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .mobile-nav-overlay__social a:hover { color: var(--color-primary); }
+    .mobile-nav-overlay__social svg { width: 26px; height: 26px; fill: currentColor; }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 782px) {
+      .mobile-header { display: flex; }
+      .mobile-nav-overlay { display: none; }
+      .mobile-nav-overlay.open { display: flex; }
+
+      .sidebar { display: none; }
+      .main-content { width: 100%; padding-top: 64px; }
+
+      .site-wrapper {
+        flex-direction: column;
+        padding: 0 var(--outer-pad);
+      }
+
+      .hero-headline { font-size: clamp(32px, 8vw, 48px); }
+      .hero-greeting { font-size: 24px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 24px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .awards-grid { grid-template-columns: 1fr; }
+
+      .research-card { padding: 24px; }
+
+      .site-footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        padding: 24px var(--outer-pad);
+      }
+    }
+
+    @media (min-width: 783px) and (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Mobile Header ────────────────────────────────────── -->
+  <header class="mobile-header" role="banner">
+    <a href="#intro" class="mobile-header__name">Ibrahim Ansari</a>
+    <button class="hamburger" aria-label="Open navigation menu" aria-expanded="false" id="hamburger-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- ── Mobile Overlay Nav ───────────────────────────────── -->
+  <div class="mobile-nav-overlay" id="mobile-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-nav-overlay__close" id="overlay-close" aria-label="Close navigation menu">&#x2715;</button>
+    <nav aria-label="Mobile primary navigation">
+      <a href="#intro">Intro</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="mobile-nav-overlay__social">
+      <a href="https://github.com/Se9uencer" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/ibrahimansari01" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:ibraansa@uw.edu" aria-label="Send email to Ibrahim">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Site Wrapper ──────────────────────────────────────── -->
+  <div class="site-wrapper">
+
+    <!-- ── Sidebar ─────────────────────────────────────────── -->
+    <aside class="sidebar" aria-label="Site sidebar">
+      <a href="#intro" class="sidebar__name">Ibrahim Ansari</a>
+
+      <nav class="sidebar__nav" aria-label="Primary navigation">
+        <a href="#intro" data-section="intro">Intro</a>
+        <a href="#projects" data-section="projects">Projects</a>
+        <a href="#experience" data-section="experience">Experience</a>
+        <a href="#research" data-section="research">Research</a>
+        <a href="#awards" data-section="awards">Awards</a>
+        <a href="#contact" data-section="contact">Contact</a>
+      </nav>
+
+      <div class="sidebar__social">
+        <a href="https://github.com/Se9uencer" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/ibrahimansari01" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:ibraansa@uw.edu" aria-label="Send email to Ibrahim">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────────────── -->
+    <main class="main-content" id="main">
+
+      <!-- ── Hero ───────────────────────────────────────────── -->
+      <section id="intro" aria-label="Introduction">
+        <div class="hero-inner">
+          <p class="hero-greeting">Hi there!</p>
+          <h1 class="hero-headline">I'm Ibrahim — CS student at UW Allen School, ML researcher, and builder of things that matter.</h1>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#projects" class="btn btn-outline">My Projects</a>
+          </div>
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── About ──────────────────────────────────────────── -->
+      <section aria-label="About Ibrahim">
+        <div class="about-grid">
+          <p>Incoming CS direct admit at the University of Washington's Paul G. Allen School of Computer Science &amp; Engineering (Class of 2030). I build at the intersection of machine learning, full-stack engineering, and human-centered technology. My research on cross-cultural facial emotion recognition — trained on South Asian and Caucasian datasets using ResNet-18 CNNs — won 1st place at WSSEF 2025 and was published in Curieux Academic Journal.</p>
+          <p>I've shipped a full-stack Quran LMS with AI recitation feedback, a real-time collaborative dua tracker, and a virtual clothing try-on app. Outside of code I lift weights, play golf and tennis, play acoustic guitar, and tend to be running too many projects at once.</p>
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Projects ───────────────────────────────────────── -->
+      <section id="projects" class="section" aria-labelledby="projects-heading">
+        <h2 class="section-heading" id="projects-heading">Projects</h2>
+        <div class="projects-grid">
+
+          <!-- Taleem -->
+          <article class="feature-card" aria-label="Taleem project">
+            <div class="feature-card__placeholder" style="padding:0; overflow:hidden;" aria-hidden="true">
+              <img src="taleem.png" alt="Taleem student dashboard screenshot" style="width:100%;height:200px;object-fit:cover;object-position:top;display:block;" />
+            </div>
+            <div class="feature-card__body">
+              <h6>Taleem</h6>
+              <p>Full-stack Quran LMS for Islamic Sunday schools. Role-based dashboards for students, teachers, and parents. AI recitation feedback via OpenAI Whisper and a custom Levenshtein-distance algorithm scoring accuracy across all 114 Surahs. Built with Next.js, TypeScript, and a 15-table PostgreSQL schema with Row-Level Security.</p>
+              <a href="#" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View Project</a>
+            </div>
+          </article>
+
+          <!-- FitCheck -->
+          <article class="feature-card" aria-label="FitCheck project">
+            <div class="feature-card__placeholder" style="padding:0; overflow:hidden;" aria-hidden="true">
+              <img src="fitcheck.png" alt="FitCheck app screenshot" style="width:100%;height:200px;object-fit:cover;object-position:top;display:block;" />
+            </div>
+            <div class="feature-card__body">
+              <h6>FitCheck</h6>
+              <p>AI-powered virtual clothing try-on web app. FastAPI backend, Supabase for auth and storage, React frontend deployed on Vercel. Users preview clothing on their own uploaded photos with AI-powered outfit visualization.</p>
+              <a href="#" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View Project</a>
+            </div>
+          </article>
+
+          <!-- Dua Tracker -->
+          <article class="feature-card" aria-label="Dua Tracker project">
+            <div class="feature-card__placeholder" style="padding:0; overflow:hidden;" aria-hidden="true">
+              <img src="dua-tracker.png" alt="Dua Tracker app screenshot" style="width:100%;height:200px;object-fit:cover;object-position:top;display:block;" />
+            </div>
+            <div class="feature-card__body">
+              <h6>Dua Tracker</h6>
+              <p>Real-time collaborative dua and dhikr tracker. Communities create campaigns, share a unique link, and counts sync live via Firebase Realtime Database. Supports public/private campaigns, offline count queuing, and RTL Arabic rendering. Deployed on Netlify.</p>
+              <a href="https://duatracker.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View Live ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Experience ─────────────────────────────────────── -->
+      <section id="experience" class="section" aria-labelledby="experience-heading">
+        <h2 class="section-heading" id="experience-heading">Experience</h2>
+        <ol class="timeline" aria-label="Work experience">
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Accessibility Research Intern — IEEE NTC SPARK SMP</span>
+            <span class="timeline-item__meta">University of Washington · 2025 – Present · Remote</span>
+            <p class="timeline-item__desc">Conducted interdisciplinary research on accessibility in quantum mechanics and nanotechnology curricula under Prof. Anant Anantram and Dr. Lalitha Subramanian. Developed AI-assisted tools and boosted Canvas course accessibility score to 99%.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Summer Intern, AI Product Development</span>
+            <span class="timeline-item__meta">Harvard Undergraduate Ventures (TeachShare) · Summer 2025 · Remote</span>
+            <p class="timeline-item__desc">Built an end-to-end two-step LLM pipeline in Google Colab that transforms teacher prompts into structured JSON and auto-generates differentiated worksheets. The workflow was adopted into TeachShare's live service. Presented architecture and roadmap to Harvard faculty and startup leadership.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Data Science Intern, Resource Mobilization</span>
+            <span class="timeline-item__meta">KDSP – A Down Syndrome Organisation · Summer 2024 · Karachi, Pakistan</span>
+            <p class="timeline-item__desc">Pioneered KDSP's first international internship. Streamlined transition from legacy DBMS to DonorPerfect, migrating 2,500+ donor records with minimal data loss.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Mathematics Instructor (Part-time)</span>
+            <span class="timeline-item__meta">Mathnasium – The Math Learning Center · 2023–2024 · Bothell, WA</span>
+            <p class="timeline-item__desc">Delivered one-on-one and small-group K–12 instruction using the Mathnasium Method. Supported 50+ students across simultaneous sessions.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Independent Math Tutor</span>
+            <span class="timeline-item__meta">Self-employed · April 2026 – Present · Remote</span>
+            <p class="timeline-item__desc">One-on-one tutoring for middle and high school students focused on conceptual understanding and procedural fluency.</p>
+          </li>
+
+        </ol>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Research ───────────────────────────────────────── -->
+      <section id="research" class="section" aria-labelledby="research-heading">
+        <h2 class="section-heading" id="research-heading">Research</h2>
+        <div class="research-card">
+          <h3>Cross-Cultural Emotion Recognition</h3>
+          <h6>1st Place — WSSEF 2025 · Published in Curieux Academic Journal</h6>
+          <p>Trained two ResNet-18 CNNs on ~10,000 images each — one on the ISAFE South Asian dataset, one on FER-2013 (predominantly Caucasian). Baseline cross-cultural accuracy was as low as 15.6%. After augmenting each dataset with just 20% of the other group's data, cross-cultural accuracy jumped to 79.2% — without sacrificing in-group performance. The study demonstrates that AI emotion recognition systems encode cultural biases from their training data, and that even modest dataset diversity can substantially reduce harmful misclassification.</p>
+          <div class="research-card__actions">
+            <a href="https://www.curieuxacademicjournal.com/_files/ugd/99711c_aca5394bf7ec4768ab37f7c1eccfea9a.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read Paper</a>
+            <a href="https://wssef.org/2025-wssef-first-place-trophy-grades-9-12/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View Award</a>
+          </div>
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Awards ─────────────────────────────────────────── -->
+      <section id="awards" class="section" aria-labelledby="awards-heading">
+        <h2 class="section-heading" id="awards-heading">Awards &amp; Honors</h2>
+        <div class="awards-grid">
+
+          <div class="award-card">
+            <span class="award-card__name">1st Place — WSSEF 2025</span>
+            <span class="award-card__org">Washington State Science &amp; Engineering Fair</span>
+            <span class="award-card__desc">Cross-cultural facial emotion recognition research.</span>
+          </div>
+
+          <div class="award-card">
+            <span class="award-card__name">USACO Silver</span>
+            <span class="award-card__org">USA Computing Olympiad · Jan 2025</span>
+            <span class="award-card__desc"></span>
+          </div>
+
+          <div class="award-card">
+            <span class="award-card__name">MIS 2nd Place — FBLA National Conference</span>
+            <span class="award-card__org">FBLA</span>
+            <span class="award-card__desc">Management Information Systems national finalist. $300 scholarship.</span>
+          </div>
+
+          <div class="award-card">
+            <span class="award-card__name">Network Design 2nd Place — FBLA National Conference</span>
+            <span class="award-card__org">FBLA</span>
+            <span class="award-card__desc">National finalist in Network Design. $300 scholarship.</span>
+          </div>
+
+          <div class="award-card">
+            <span class="award-card__name">Hydrogeology State Champion</span>
+            <span class="award-card__org">Washington Science Olympiad</span>
+            <span class="award-card__desc">1st place in Hydrogeology at the WA State Science Olympiad tournament.</span>
+          </div>
+
+          <div class="award-card">
+            <span class="award-card__name">Google Developer Program</span>
+            <span class="award-card__org">Google · Issued May 2026</span>
+            <span class="award-card__desc">Google Cloud Innovators+ community recognition.</span>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Contact ────────────────────────────────────────── -->
+      <section id="contact" class="section" aria-labelledby="contact-heading">
+        <h2 class="section-heading" id="contact-heading">Let's Connect</h2>
+        <div class="contact-inner">
+          <p>I'm open to research collaborations, internship opportunities, and interesting conversations about ML, AI fairness, or full-stack engineering. Reach out directly.</p>
+          <a href="mailto:ibraansa@uw.edu" class="contact-email">ibraansa@uw.edu</a>
+          <form class="contact-form" id="contact-form" action="https://formsubmit.co/ibraansa@uw.edu" method="POST" aria-label="Contact form">
+            <input type="hidden" name="_subject" value="New message from your portfolio" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
+            <input type="email" name="email" placeholder="Your email" autocomplete="email" required />
+            <textarea name="message" placeholder="Your message" rows="5" required></textarea>
+            <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+          </form>
+          <p id="form-success" style="display:none; color: var(--color-primary); font-size:16px; margin-top:12px; font-weight:500;">Message sent — I'll be in touch soon!</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="site-footer">
+      <p>© 2026 Ibrahim Ansari</p>
+      <p>Built with purpose.</p>
+    </div>
+  </footer>
+
+  <!-- ── JS ─────────────────────────────────────────────────── -->
+  <script>
+    // Contact form — AJAX submit via FormSubmit
+    var contactForm = document.getElementById('contact-form');
+    var formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = contactForm.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res) {
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+          alert('Something went wrong — please email me directly at ibraansa@uw.edu');
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong — please email me directly at ibraansa@uw.edu');
+      });
+    });
+
+    // Mobile nav overlay
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const overlay = document.getElementById('mobile-overlay');
+    const overlayClose = document.getElementById('overlay-close');
+
+    function openOverlay() {
+      overlay.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openOverlay);
+    overlayClose.addEventListener('click', closeOverlay);
+
+    overlay.querySelectorAll('nav a').forEach(function(link) {
+      link.addEventListener('click', closeOverlay);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
+    });
+
+    // IntersectionObserver — active nav highlighting
+    var navLinks = document.querySelectorAll('.sidebar__nav a[data-section]');
+
+    var observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    var currentActive = null;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var sectionId = entry.target.id;
+        var correspondingLink = document.querySelector('.sidebar__nav a[data-section="' + sectionId + '"]');
+        if (!correspondingLink) return;
+
+        if (entry.isIntersecting) {
+          if (currentActive) currentActive.classList.remove('active');
+          correspondingLink.classList.add('active');
+          currentActive = correspondingLink;
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section[id]').forEach(function(section) {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
