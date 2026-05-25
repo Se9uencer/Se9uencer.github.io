@@ -784,11 +784,10 @@
           <p>I'm open to research collaborations, internship opportunities, and interesting conversations about ML, AI fairness, or full-stack engineering. Reach out directly.</p>
           <a href="mailto:ibraansa@uw.edu" class="contact-email">ibraansa@uw.edu</a>
           <div id="form-success" style="display:none; color: var(--color-primary); font-size:16px; font-weight:500; padding: 16px 0;">Message sent — I'll be in touch soon!</div>
-          <form class="contact-form" id="contact-form" action="https://formsubmit.co/ibraansa@uw.edu" method="POST" aria-label="Contact form">
-            <input type="hidden" name="_subject" value="New message from your portfolio" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="https://se9uencer.github.io/#contact?sent=1" />
+          <form class="contact-form" id="contact-form" aria-label="Contact form">
+            <input type="hidden" name="access_key" value="dddfd544-3d49-4403-b9ca-3505b2bf7f80" />
+            <input type="hidden" name="subject" value="New message from your portfolio" />
+            <input type="hidden" name="from_name" value="Ibrahim Ansari Portfolio" />
             <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
             <input type="email" name="email" placeholder="Your email" autocomplete="email" required />
             <textarea name="message" placeholder="Your message" rows="5" required></textarea>
@@ -810,17 +809,47 @@
 
   <!-- ── JS ─────────────────────────────────────────────────── -->
   <script>
-    // Contact form — show success banner if redirected back after submission
-    (function() {
-      if (window.location.search.indexOf('sent=1') !== -1) {
-        var form = document.getElementById('contact-form');
-        var success = document.getElementById('form-success');
-        if (form) form.style.display = 'none';
-        if (success) success.style.display = 'block';
-        // Clean up the URL
-        history.replaceState(null, '', window.location.pathname + '#contact');
-      }
-    })();
+    // Contact form — Web3Forms AJAX submit
+    var contactForm = document.getElementById('contact-form');
+    var formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = contactForm.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      var data = {
+        access_key: contactForm.querySelector('[name="access_key"]').value,
+        subject:    contactForm.querySelector('[name="subject"]').value,
+        from_name:  contactForm.querySelector('[name="from_name"]').value,
+        name:       contactForm.querySelector('[name="name"]').value,
+        email:      contactForm.querySelector('[name="email"]').value,
+        message:    contactForm.querySelector('[name="message"]').value
+      };
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(json) {
+        if (json.success) {
+          contactForm.style.display = 'none';
+          formSuccess.style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+          alert('Something went wrong — please email me at ibraansa@uw.edu');
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong — please email me at ibraansa@uw.edu');
+      });
+    });
 
     // Mobile nav overlay
     const hamburgerBtn = document.getElementById('hamburger-btn');
