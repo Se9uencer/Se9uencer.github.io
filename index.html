@@ -355,6 +355,129 @@
       line-height: 1.5;
     }
 
+    /* ── Award Groups (org-level lists) ───────────────────── */
+    .award-orgs {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .award-org__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px solid var(--color-tertiary);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .award-org__name {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-foreground);
+    }
+    .award-org__meta {
+      font-size: 14px;
+      color: var(--color-secondary);
+    }
+    .award-year { margin-bottom: 20px; }
+    .award-year:last-child { margin-bottom: 0; }
+    .award-year__label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: 8px;
+    }
+    .award-year ul {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .award-year li {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--color-foreground);
+      padding-left: 16px;
+      position: relative;
+    }
+    .award-year li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 5px;
+      height: 5px;
+      background: var(--color-primary);
+    }
+
+    /* ── Meta Lists (Test Scores / Languages) ─────────────── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .meta-block__heading {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: 16px;
+    }
+    .meta-block + .meta-block { margin-top: 40px; }
+    .meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .meta-list__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      font-size: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--color-tertiary);
+    }
+    .meta-list__row:last-child { border-bottom: none; padding-bottom: 0; }
+    .meta-list__label {
+      color: var(--color-foreground);
+      font-weight: 500;
+    }
+    .meta-list__value {
+      color: var(--color-secondary);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── Recommendation ────────────────────────────────────── */
+    .recommendation-card {
+      background: var(--color-quaternary);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .recommendation-card blockquote {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--color-foreground);
+    }
+    .recommendation-card blockquote::before { content: open-quote; }
+    .recommendation-card blockquote::after { content: close-quote; }
+    .recommendation-card__attribution {
+      font-size: 14px;
+      color: var(--color-secondary);
+    }
+    .recommendation-card__attribution strong {
+      color: var(--color-foreground);
+      font-weight: 700;
+    }
+
     /* ── Contact ───────────────────────────────────────────── */
     .contact-inner {
       max-width: 600px;
@@ -521,8 +644,10 @@
       .about-grid { grid-template-columns: 1fr; gap: 24px; }
       .projects-grid { grid-template-columns: 1fr; }
       .awards-grid { grid-template-columns: 1fr; }
+      .meta-grid { grid-template-columns: 1fr; gap: 32px; }
 
       .research-card { padding: 24px; }
+      .recommendation-card { padding: 24px; }
 
       .site-footer {
         flex-direction: column;
@@ -556,8 +681,10 @@
       <a href="#intro">Intro</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
       <a href="#research">Research</a>
       <a href="#awards">Awards</a>
+      <a href="#credentials">Credentials</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="mobile-nav-overlay__social">
@@ -584,8 +711,10 @@
         <a href="#intro" data-section="intro">Intro</a>
         <a href="#projects" data-section="projects">Projects</a>
         <a href="#experience" data-section="experience">Experience</a>
+        <a href="#education" data-section="education">Education</a>
         <a href="#research" data-section="research">Research</a>
         <a href="#awards" data-section="awards">Awards</a>
+        <a href="#credentials" data-section="credentials">Credentials</a>
         <a href="#contact" data-section="contact">Contact</a>
       </nav>
 
@@ -622,7 +751,7 @@
       <!-- ── About ──────────────────────────────────────────── -->
       <section aria-label="About Ibrahim">
         <div class="about-grid">
-          <p>Incoming CS direct admit at the University of Washington's Paul G. Allen School of Computer Science &amp; Engineering (Class of 2030). I build at the intersection of machine learning, full-stack engineering, and human-centered technology. My research on cross-cultural facial emotion recognition — trained on South Asian and Caucasian datasets using ResNet-18 CNNs — won 1st place at WSSEF 2025 and was published in Curieux Academic Journal.</p>
+          <p>CS direct admit at the University of Washington's Paul G. Allen School of Computer Science &amp; Engineering (Class of 2030), now working as an undergraduate research intern in AI for education. I build at the intersection of machine learning, full-stack engineering, and human-centered technology. My research on cross-cultural facial emotion recognition — trained on South Asian and Caucasian datasets using ResNet-18 CNNs — won 1st place at WSSEF 2025 and was published in Curieux Academic Journal.</p>
           <p>I've shipped a full-stack Quran LMS with AI recitation feedback, a real-time collaborative dua tracker, and a virtual clothing try-on app. Outside of code I lift weights, play golf and tennis, play acoustic guitar, and tend to be running too many projects at once.</p>
         </div>
       </section>
@@ -641,7 +770,7 @@
             </div>
             <div class="feature-card__body">
               <h6>Taleem</h6>
-              <p>Full-stack Quran LMS for Islamic Sunday schools. Role-based dashboards for students, teachers, and parents. AI recitation feedback via OpenAI Whisper and a custom Levenshtein-distance algorithm scoring accuracy across all 114 Surahs. Built with Next.js, TypeScript, and a 15-table PostgreSQL schema with Row-Level Security.</p>
+              <p>Full-stack Quran LMS for Islamic Sunday schools. Role-based dashboards for students, teachers, and parents, backed by a 15-table PostgreSQL schema with Row-Level Security. AI recitation feedback via OpenAI Whisper and a custom Levenshtein-distance algorithm scoring accuracy across all 114 Surahs, plus gamification mechanics, progress analytics, a parent-child verification flow, rate limiting, and a Vitest test suite. Built with Next.js and TypeScript.</p>
               <a href="https://actual-taleem-4hazheen0-ibrahim-ansaris-projects.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View Live ↗</a>
             </div>
           </article>
@@ -664,9 +793,20 @@
               <img src="dua-tracker.png" alt="Dua Tracker app screenshot" style="width:100%;height:200px;object-fit:cover;object-position:top;display:block;" />
             </div>
             <div class="feature-card__body">
-              <h6>Dua Tracker</h6>
-              <p>Real-time collaborative dua and dhikr tracker. Communities create campaigns, share a unique link, and counts sync live via Firebase Realtime Database. Supports public/private campaigns, offline count queuing, and RTL Arabic rendering. Deployed on Netlify.</p>
+              <h6>Khatam — Dua &amp; Dhikr Tracker</h6>
+              <p>Real-time collaborative dua and dhikr tracker. Communities create campaigns with custom goals, share a unique link, and counts sync live via Firebase Realtime Database. Supports public/private campaigns, offline count queuing, and RTL Arabic rendering. Deployed on Netlify.</p>
               <a href="https://duatracker.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View Live ↗</a>
+            </div>
+          </article>
+
+          <!-- Golf Swing Coach -->
+          <article class="feature-card" aria-label="Golf Swing Coach project">
+            <div class="feature-card__placeholder" aria-hidden="true">
+              <span class="feature-card__placeholder-label">Golf Swing Coach</span>
+            </div>
+            <div class="feature-card__body">
+              <h6>AI Golf Swing Coach</h6>
+              <p>Python tool that turns a phone video into a swing report. Runs MediaPipe pose tracking on every frame, auto-detects the swing by hand speed, then isolates setup, top-of-backswing, and impact to measure early extension, loss of posture, head sway, and head lift — comparing each swing only to the golfer's own setup rather than a generic ideal. Overlays a skeleton and the frozen setup frame on the video so the difference is visible at a glance.</p>
             </div>
           </article>
 
@@ -681,9 +821,21 @@
         <ol class="timeline" aria-label="Work experience">
 
           <li class="timeline-item">
+            <span class="timeline-item__role">Undergraduate Research Intern, AI in Education — IEEE NTC SPARK SMP</span>
+            <span class="timeline-item__meta">University of Washington · Jul 2026 – Present · Full-time · Seattle, WA (Hybrid)</span>
+            <p class="timeline-item__desc">Second SPARK internship, researching applications of AI in education under Dr. Lalitha Subramanian.</p>
+          </li>
+
+          <li class="timeline-item">
             <span class="timeline-item__role">Accessibility Research Intern — IEEE NTC SPARK SMP</span>
-            <span class="timeline-item__meta">University of Washington · 2025 – Present · Remote</span>
+            <span class="timeline-item__meta">University of Washington · Summer 2025 · Remote</span>
             <p class="timeline-item__desc">Conducted interdisciplinary research on accessibility in quantum mechanics and nanotechnology curricula under Prof. Anant Anantram and Dr. Lalitha Subramanian. Developed AI-assisted tools and boosted Canvas course accessibility score to 99%.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Director of Communications — Technology Student Association</span>
+            <span class="timeline-item__meta">North Creek HS Chapter · Jun 2025 – Jun 2026 · Bothell, WA</span>
+            <p class="timeline-item__desc">Led chapter communications for TSA. Competed for 2 years 10 months, placing 10th nationally in Data Science &amp; Analytics at the TSA National Conference.</p>
           </li>
 
           <li class="timeline-item">
@@ -708,6 +860,32 @@
             <span class="timeline-item__role">Independent Math Tutor</span>
             <span class="timeline-item__meta">Self-employed · April 2026 – Present · Remote</span>
             <p class="timeline-item__desc">One-on-one tutoring for middle and high school students focused on conceptual understanding and procedural fluency.</p>
+          </li>
+
+        </ol>
+
+        <div class="recommendation-card" style="margin-top: 40px;">
+          <blockquote>I had the opportunity to work with Ibrahim and was thoroughly impressed by his eagerness to learn and ability to understand and apply data management concepts. He excelled at interpreting complex data, cleaning and organizing large datasets, and ensuring accuracy and reliability for further analysis. Ibrahim's enthusiasm for the field, coupled with his strong work ethic and ability to utilize available resources in novel ways, makes him an exceptional aspiring data scientist. He has a bright future ahead of him and would be an asset to any team.</blockquote>
+          <p class="recommendation-card__attribution"><strong>Muhammad Osama</strong> — Manager, Resource Development at LRBT · managed Ibrahim directly at KDSP</p>
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Education ──────────────────────────────────────── -->
+      <section id="education" class="section" aria-labelledby="education-heading">
+        <h2 class="section-heading" id="education-heading">Education</h2>
+        <ol class="timeline" aria-label="Education history">
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">University of Washington — Bachelor of Science, Computer Science</span>
+            <span class="timeline-item__meta">Paul G. Allen School of Computer Science &amp; Engineering · Seattle, WA</span>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">North Creek High School — General Studies</span>
+            <span class="timeline-item__meta">Bothell, WA</span>
+            <p class="timeline-item__desc">Commencement speaker for the Class of 2026. Activities: Future Business Leaders of America (FBLA), Muslim Student Association (MSA), South Asian Student Association (SASA), Science Olympiad, Technology Student Association (TSA), Tennis.</p>
           </li>
 
         </ol>
@@ -738,8 +916,8 @@
 
           <div class="award-card">
             <span class="award-card__name">1st Place — WSSEF 2025</span>
-            <span class="award-card__org">Washington State Science &amp; Engineering Fair</span>
-            <span class="award-card__desc">Cross-cultural facial emotion recognition research.</span>
+            <span class="award-card__org">Washington State Science &amp; Engineering Fair · Mar 2025</span>
+            <span class="award-card__desc">"Cross-Cultural Emotion Recognition: AI vs. South Asian American Generations." Grades 9–12.</span>
           </div>
 
           <div class="award-card">
@@ -749,27 +927,136 @@
           </div>
 
           <div class="award-card">
-            <span class="award-card__name">MIS 2nd Place — FBLA National Conference</span>
-            <span class="award-card__org">FBLA</span>
-            <span class="award-card__desc">Management Information Systems national finalist. $300 scholarship.</span>
-          </div>
-
-          <div class="award-card">
-            <span class="award-card__name">Network Design 2nd Place — FBLA National Conference</span>
-            <span class="award-card__org">FBLA</span>
-            <span class="award-card__desc">National finalist in Network Design. $300 scholarship.</span>
-          </div>
-
-          <div class="award-card">
-            <span class="award-card__name">Hydrogeology State Champion</span>
-            <span class="award-card__org">Washington Science Olympiad</span>
+            <span class="award-card__name">1st Place State Champion — Hydrogeology</span>
+            <span class="award-card__org">Washington Science Olympiad · Apr 2024</span>
             <span class="award-card__desc">1st place in Hydrogeology at the WA State Science Olympiad tournament.</span>
           </div>
+
+        </div>
+
+        <div class="award-orgs">
+
+          <div class="award-org">
+            <div class="award-org__header">
+              <span class="award-org__name">FBLA</span>
+              <span class="award-org__meta">Future Business Leaders of America · Member since Sep 2022</span>
+            </div>
+
+            <div class="award-year">
+              <div class="award-year__label">2025</div>
+              <ul>
+                <li>Data Analysis 4th Place — Washington FBLA State Conference</li>
+                <li>Data Analysis 4th Place — West Central Regional Conference</li>
+                <li>Impromptu Speaking 6th Place — Washington FBLA State Conference</li>
+              </ul>
+            </div>
+
+            <div class="award-year">
+              <div class="award-year__label">2024</div>
+              <ul>
+                <li>Partnership with Business Project Top 15 Finalist — FBLA National Conference</li>
+                <li>Partnership with Business Project 3rd Place — Washington FBLA State Conference</li>
+                <li>Management Information Systems 2nd Place — FBLA National Leadership Conference — $300 scholarship</li>
+                <li>Management Information Systems 1st Place — Washington FBLA State Conference — $200 scholarship</li>
+                <li>Management Information Systems 1st Place — West Central Regional Conference</li>
+                <li>Introduction to Information Technology 6th Place — Washington FBLA State Conference</li>
+                <li>Introduction to Information Technology 1st Place — West Central FBLA Regional Conference</li>
+                <li>Networking Infrastructure 5th Place — West Central FBLA Regional Conference</li>
+              </ul>
+            </div>
+
+            <div class="award-year">
+              <div class="award-year__label">2023</div>
+              <ul>
+                <li>Networking Infrastructure 5th Place — West Central FBLA Regional Conference</li>
+                <li>Network Design 2nd Place — FBLA National Leadership Conference — $300 scholarship</li>
+                <li>Network Design 3rd Place — Washington FBLA State Conference — $100 scholarship</li>
+                <li>Network Design 1st Place — West Central FBLA Regional Conference</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="award-org">
+            <div class="award-org__header">
+              <span class="award-org__name">TSA</span>
+              <span class="award-org__meta">Technology Student Association · Member since Sep 2022</span>
+            </div>
+
+            <div class="award-year">
+              <div class="award-year__label">2025</div>
+              <ul>
+                <li>Drone Challenge 3rd Place — Washington State Conference</li>
+                <li>Software Development 2nd Place — Washington TSA State Conference</li>
+              </ul>
+            </div>
+
+            <div class="award-year">
+              <div class="award-year__label">2024</div>
+              <ul>
+                <li>Data Science &amp; Analytics 10th Place — TSA National Conference</li>
+                <li>Data Science &amp; Analytics 5th Place — Washington TSA State Conference</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="angled-sep" aria-hidden="true" />
+
+      <!-- ── Credentials (Certifications, Test Scores, Languages) ── -->
+      <section id="credentials" class="section" aria-labelledby="credentials-heading">
+        <h2 class="section-heading" id="credentials-heading">Credentials</h2>
+
+        <div class="awards-grid">
 
           <div class="award-card">
             <span class="award-card__name">Google Developer Program</span>
             <span class="award-card__org">Google · Issued May 2026</span>
-            <span class="award-card__desc">Google Cloud Innovators+ community recognition.</span>
+            <span class="award-card__desc">Google Cloud Innovators+ community recognition — Software Development.</span>
+          </div>
+
+          <div class="award-card">
+            <span class="award-card__name">Adult, Child &amp; Infant CPR/AED</span>
+            <span class="award-card__org">Online Certification</span>
+            <span class="award-card__desc"></span>
+          </div>
+
+        </div>
+
+        <div class="meta-grid" style="margin-top: 40px;">
+
+          <div>
+            <div class="meta-block">
+              <div class="meta-block__heading">Test Scores</div>
+              <div class="meta-list">
+                <div class="meta-list__row"><span class="meta-list__label">SAT (Dec 2024)</span><span class="meta-list__value">1560 — Math 800 · English 760</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Lang</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Chem</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Calc AB</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Calc BC</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP US History</span><span class="meta-list__value">4</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Physics 1</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Physics 2</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Computer Science A</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP World History</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Research</span><span class="meta-list__value">5</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">AP Seminar</span><span class="meta-list__value">3</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="meta-block">
+              <div class="meta-block__heading">Languages</div>
+              <div class="meta-list">
+                <div class="meta-list__row"><span class="meta-list__label">English</span><span class="meta-list__value">Native or bilingual</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">Urdu</span><span class="meta-list__value">Native or bilingual</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">Hindi</span><span class="meta-list__value">Native or bilingual</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">Spanish</span><span class="meta-list__value">Limited working</span></div>
+                <div class="meta-list__row"><span class="meta-list__label">Chinese</span><span class="meta-list__value">Elementary</span></div>
+              </div>
+            </div>
           </div>
 
         </div>
