@@ -793,7 +793,7 @@
       <!-- ── About ──────────────────────────────────────────── -->
       <section aria-label="About Ibrahim">
         <div class="about-grid reveal">
-          <p>CS direct admit at the University of Washington's Paul G. Allen School of Computer Science &amp; Engineering, now working as an undergraduate research intern in AI for education. I build at the intersection of machine learning, full-stack engineering, and human-centered technology. My research on cross-cultural facial emotion recognition (trained on South Asian and Caucasian datasets using ResNet-18 CNNs) won 1st place at WSSEF 2025 and was published in Curieux Academic Journal.</p>
+          <p>CS direct admit at the University of Washington's Paul G. Allen School of Computer Science &amp; Engineering, now founding Taleem through the MAPS Combinator '26 incubator and working as an AI in Teaching intern at UW Professional &amp; Continuing Education. I build at the intersection of machine learning, full-stack engineering, and human-centered technology. My research on cross-cultural facial emotion recognition (trained on South Asian and Caucasian datasets using ResNet-18 CNNs) won 1st place at WSSEF 2025 and was published in Curieux Academic Journal.</p>
           <p>I've shipped a full-stack Quran LMS with AI recitation feedback, a real-time collaborative dua tracker, and a virtual clothing try-on app. Outside of code I lift weights, play golf and tennis, play acoustic guitar, and tend to be running too many projects at once.</p>
         </div>
       </section>
@@ -812,7 +812,7 @@
             </div>
             <div class="feature-card__body">
               <h6>OnTrack: Fitness &amp; Faith</h6>
-              <p>Shipped iPhone app on the App Store. All-in-one tracker for gym workouts and splits, body weight, diet, and daily prayers, with an AI coach powered by Google Gemini and photo-based calorie estimation. Local-first on SwiftData with HealthKit sync and a 616-exercise bundled database, with no accounts, no ads, and no user-data backend. Built with Swift and SwiftUI.</p>
+              <p>Shipped iPhone app on the App Store with 12 active users. All-in-one tracker for gym workouts and splits, body weight, diet, and daily prayers, with an AI coach powered by Google Gemini and photo-based calorie estimation. Local-first on SwiftData with HealthKit sync and a 616-exercise bundled database, with no accounts, no ads, and no user-data backend. AI features run through a Cloudflare Worker that proxies Gemini with SSE streaming, rate limiting, and a model fallback chain. Built with Swift and SwiftUI.</p>
               <a href="https://apps.apple.com/us/app/ontrack-fitness-faith/id6791721388" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View on the App Store ↗</a>
             </div>
           </article>
@@ -824,7 +824,7 @@
             </div>
             <div class="feature-card__body">
               <h6>Taleem</h6>
-              <p>Full-stack Quran LMS for Islamic Sunday schools. Role-based dashboards for students, teachers, and parents, backed by a 15-table PostgreSQL schema with Row-Level Security. AI recitation feedback via OpenAI Whisper and a custom Levenshtein-distance algorithm scoring accuracy across all 114 Surahs, plus gamification mechanics, progress analytics, a parent-child verification flow, rate limiting, and a Vitest test suite. Built with Next.js and TypeScript.</p>
+              <p>Full-stack Quran LMS for independent Quran teachers and Islamic schools, built through MAPS Combinator '26. Role-based dashboards for students, teachers, and parents, backed by a 15-table PostgreSQL schema with Row-Level Security. AI recitation feedback via OpenAI Whisper and a custom Levenshtein-distance algorithm scoring accuracy per verse across all 114 Surahs with diacritic-aware Arabic normalization, plus gamification mechanics, progress analytics, a parent-child verification flow, rate limiting, and a Vitest test suite. Built with Next.js and TypeScript.</p>
               <a href="https://mytaleem.org" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="align-self: flex-start; margin-top: 8px;">View Live ↗</a>
             </div>
           </article>
@@ -879,15 +879,27 @@
         <ol class="timeline" aria-label="Work experience">
 
           <li class="timeline-item">
-            <span class="timeline-item__role">Undergraduate Research Intern, AI in Education · IEEE NTC SPARK SMP</span>
-            <span class="timeline-item__meta">University of Washington · Jul 2026 – Present · Full-time · Seattle, WA (Hybrid)</span>
-            <p class="timeline-item__desc">Second SPARK internship, researching applications of AI in education under Dr. Lalitha Subramanian.</p>
+            <span class="timeline-item__role">Founder &amp; Lead Engineer · Taleem</span>
+            <span class="timeline-item__meta">MAPS Combinator '26 · Oct 2026 – Present · Redmond, WA (On-site)</span>
+            <p class="timeline-item__desc">Building Taleem (mytaleem.org), a Quran learning management system for independent teachers: "Know every student's progress, verse by verse." Implemented recitation scoring with a custom Levenshtein-distance algorithm over OpenAI Whisper output, with diacritic-aware normalization across 8+ Unicode ranges. Selected for MAPS Combinator, a 12-week in-person incubator for early-stage founders ending in a Demo Day pitch to angel investors.</p>
           </li>
 
           <li class="timeline-item">
-            <span class="timeline-item__role">Accessibility Research Intern · IEEE NTC SPARK SMP</span>
-            <span class="timeline-item__meta">University of Washington · Summer 2025 · Remote</span>
-            <p class="timeline-item__desc">Conducted interdisciplinary research on accessibility in quantum mechanics and nanotechnology curricula under Prof. Anant Anantram and Dr. Lalitha Subramanian. Developed AI-assisted tools and boosted Canvas course accessibility score to 99%.</p>
+            <span class="timeline-item__role">Software Engineer · Fitness Tech at UW</span>
+            <span class="timeline-item__meta">University of Washington · Oct 2026 – Present · Seattle, WA</span>
+            <p class="timeline-item__desc">Engineer on a student team building a health and fitness app.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">AI in Teaching Intern</span>
+            <span class="timeline-item__meta">UW Professional &amp; Continuing Education · Jul 2026 – Present · Seattle, WA (Hybrid)</span>
+            <p class="timeline-item__desc">Evaluating how generative AI should be integrated into five UW PCE certificate programs (Software Product Management, Digital Marketing, Data Analytics, Software Localization, and Cybersecurity Risk Management) under Dr. Lalitha Subramanian. Benchmarked each curriculum against AI integration at seven peer institutions, including NYU, UC Berkeley, Georgetown, and Johns Hopkins, and fact-checked <em>Teaching with AI</em> (2nd ed.) against current research, catching a study since retracted by MIT. Authored 15 curriculum recommendations for the program director, each tied to a specific course, assignment, or tool, scoped by effort, and aligned with UW data governance and approved tools like UW Purple and Microsoft Copilot.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">Independent Math Tutor</span>
+            <span class="timeline-item__meta">Self-employed · Apr 2026 – Present · Remote</span>
+            <p class="timeline-item__desc">One-on-one tutoring for middle and high school students focused on conceptual understanding and procedural fluency.</p>
           </li>
 
           <li class="timeline-item">
@@ -897,27 +909,27 @@
           </li>
 
           <li class="timeline-item">
-            <span class="timeline-item__role">Summer Intern, AI Product Development</span>
-            <span class="timeline-item__meta">Harvard Undergraduate Ventures (TeachShare) · Summer 2025 · Remote</span>
-            <p class="timeline-item__desc">Built an end-to-end two-step LLM pipeline in Google Colab that transforms teacher prompts into structured JSON and auto-generates differentiated worksheets. The workflow was adopted into TeachShare's live service. Presented architecture and roadmap to Harvard faculty and startup leadership.</p>
+            <span class="timeline-item__role">Accessibility Intern · IEEE NTC SPARK SMP</span>
+            <span class="timeline-item__meta">University of Washington · Jun 2025 – Dec 2025 · Remote</span>
+            <p class="timeline-item__desc">Conducted interdisciplinary research on accessibility in quantum mechanics and nanotechnology curricula under Prof. Anant Anantram and Dr. Lalitha Subramanian through the IEEE Nanotechnology Council's internship program. Developed AI-assisted tools and boosted Canvas course accessibility score to 99%.</p>
+          </li>
+
+          <li class="timeline-item">
+            <span class="timeline-item__role">AI Product Development Intern · TeachShare</span>
+            <span class="timeline-item__meta">Harvard Undergraduate Ventures Summer Program · Jun – Aug 2025 · Remote</span>
+            <p class="timeline-item__desc">Engineered a two-step LLM pipeline that parses teacher prompts into a structured JSON schema and generates consistently formatted worksheets with grouped exercises and visuals. The pipeline was adopted into TeachShare's live worksheet-generation service. Presented the architecture and API tradeoffs to startup leadership and Harvard faculty.</p>
           </li>
 
           <li class="timeline-item">
             <span class="timeline-item__role">Data Science Intern, Resource Mobilization</span>
-            <span class="timeline-item__meta">KDSP – A Down Syndrome Organisation · Summer 2024 · Karachi, Pakistan</span>
-            <p class="timeline-item__desc">Pioneered KDSP's first international internship. Streamlined transition from legacy DBMS to DonorPerfect, migrating 2,500+ donor records with minimal data loss.</p>
+            <span class="timeline-item__meta">KDSP – A Down Syndrome Organisation · Jun – Aug 2024 · Karachi, Pakistan</span>
+            <p class="timeline-item__desc">Migrated 11 years of donor data (2,500+ donor records, 20,000+ donation entries) from a legacy database to DonorPerfect, reconciling fragmented records to recover missing fields for a team of 62. Pioneered KDSP's first international internship as founding intern.</p>
           </li>
 
           <li class="timeline-item">
             <span class="timeline-item__role">Mathematics Instructor (Part-time)</span>
-            <span class="timeline-item__meta">Mathnasium – The Math Learning Center · 2023–2024 · Bothell, WA</span>
+            <span class="timeline-item__meta">Mathnasium – The Math Learning Center · Nov 2023 – Jul 2024 · Bothell, WA</span>
             <p class="timeline-item__desc">Delivered one-on-one and small-group K–12 instruction using the Mathnasium Method. Supported 50+ students across simultaneous sessions.</p>
-          </li>
-
-          <li class="timeline-item">
-            <span class="timeline-item__role">Independent Math Tutor</span>
-            <span class="timeline-item__meta">Self-employed · April 2026 – Present · Remote</span>
-            <p class="timeline-item__desc">One-on-one tutoring for middle and high school students focused on conceptual understanding and procedural fluency.</p>
           </li>
 
         </ol>
@@ -937,7 +949,8 @@
 
           <li class="timeline-item">
             <span class="timeline-item__role">University of Washington · Bachelor of Science, Computer Science</span>
-            <span class="timeline-item__meta">Paul G. Allen School of Computer Science &amp; Engineering · Seattle, WA</span>
+            <span class="timeline-item__meta">Paul G. Allen School of Computer Science &amp; Engineering · Expected Mar 2029 · Seattle, WA</span>
+            <p class="timeline-item__desc">Relevant coursework: CSE 123 (Data Structures &amp; OOP), CSE 391 (Linux &amp; Unix Tools), Multivariable Calculus. Software Engineer on the Fitness Tech at UW student team.</p>
           </li>
 
           <li class="timeline-item">
@@ -1265,6 +1278,7 @@
         'CS @ the Allen School.',
         'builder of things that matter.',
         'shipping OnTrack on the App Store.',
+        'founding Taleem at MAPS Combinator.',
         'researching AI for education.'
       ];
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
